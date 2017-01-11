@@ -1,0 +1,22 @@
+{
+  "name": "spotify-app",
+  "version": "1.0.0",
+  "description": "Demo App to interact with the Spotify API",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aaronbini/spotify-app.git"
+  },
+  "author": "Aaron Bini",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/aaronbini/spotify-app/issues"
+  },
+  "homepage": "https://github.com/aaronbini/spotify-app#readme"
+}
