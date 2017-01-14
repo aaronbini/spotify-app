@@ -3,7 +3,7 @@ spotifyService.$inject = ['$http', 'apiUrl'];
 
 export default function spotifyService ($http, apiUrl) {
 
-  const type = '&type=track,album,artist';
+  const type = '&type=artist';
   const jaRule = '1J2VVASYAamtQ3Bt8wGgA6';
 
   function getJa () {
@@ -16,19 +16,20 @@ export default function spotifyService ($http, apiUrl) {
       .then(res => res.data);
   }
 
+  function getArtistAlbums (id) {
+    return $http.get(`${apiUrl}/spotify/artists/${id}`)
+      .then(res => res.data);
+  }
+
   function getAlbumTracks (id) {
     return $http.get(`${apiUrl}/spotify/albums/${id}`)
       .then(res => res.data);
   }
 
-  function getAlbum (id) {
-
-  }
-
   return {
     getJa,
     search,
-    getAlbumTracks,
-    getAlbum
+    getArtistAlbums,
+    getAlbumTracks
   };
 }

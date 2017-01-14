@@ -1,8 +1,20 @@
-
+<p ng-if="$ctrl.errorMessage">{{$ctrl.errorMessage}}</p>
 <div class="flexy-container">
-  <ja-rule ng-if="$ctrl.jaRule" class="flexy-item" ja-rule="$ctrl.jaRule" error-message="$ctrl.errorMessage"></ja-rule>
+  <ja-rule ng-if="$ctrl.jaRule" 
+           class="flexy-item" 
+           ja-rule="$ctrl.jaRule" 
+           play-track="$ctrl.playTrack"
+           get-tracks="$ctrl.getTracks" 
+           error-message="$ctrl.errorMessage">
+  </ja-rule>
   <search class="flexy-item" set-featured="$ctrl.setFeatured"></search>
 </div>
 <div ng-if="$ctrl.featured">
-  <h2>{{$ctrl.featured.}}</h2>
+   <h3 class="center">Click on The Album Image to Hear a Sampling from the Album</h3>
+   <h2 class="center" style="margin-top: 20px; margin-bottom: 20px;">{{$ctrl.featured.artists.items[0].name}}</h2>
+    <div class="flexy-wrap">
+      <div ng-if="$ctrl.albums" ng-repeat="album in $ctrl.albums">
+        <a ng-click="$ctrl.playTrack(album.preview)"><img ng-src="{{album.images[1].url}}" alt=""></a>
+      </div>
+    </div>
 </div>
