@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css?family=Rubik:300i,400,400i,500,700');
+
+header {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin-top: 0px;
+  background-color: rgba(76,175,80,0.2);
+  padding: 20px;
+  h1, h4 {
+    padding: 20px;
+    margin: auto;
+  }
+}
+
+.md-button {
+  background-color: rgba(76,175,80,0.2);
+}
+
+.font-rubik {
+  font-family: 'Rubik', sans-serif;
+}
+
+.flexy-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+
+  .flex-item {
+    width: 40%;
+  }
+}
+
+.flexy-wrap {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  img {
+    margin: 15px;
+  }
+}
+
+.center {
+  margin: 0 auto; 
+  text-align:center;
+}
