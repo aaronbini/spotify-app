@@ -1,0 +1,8 @@
+
+<div class="flexy-container">
+  <ja-rule ng-if="$ctrl.jaRule" class="flexy-item" ja-rule="$ctrl.jaRule" error-message="$ctrl.errorMessage"></ja-rule>
+  <search class="flexy-item" set-featured="$ctrl.setFeatured"></search>
+</div>
+<div ng-if="$ctrl.featured">
+  <h2>{{$ctrl.featured.}}</h2>
+</div>

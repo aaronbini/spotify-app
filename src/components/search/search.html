@@ -1,0 +1,14 @@
+<!--<h3>Search for Artists and Albums below:</h3>-->
+
+
+<md-input-container>
+  <input ng-model="$ctrl.searchTerm" type="text" placeholder="Search for an Artist or Album" required>
+  <md-button ng-click="$ctrl.query($ctrl.searchTerm)">Search</md-button>
+</md-input-container>
+
+<!-- Add ratings for albums? Probably not worth the effort without database -->
+<!--<md-input-container>
+    <md-select ng-model="$ctrl.rating" placeholder="Range" class="md-accent" ng-change="$ctrl.callQuery($ctrl.range)">
+    <md-option class="md-accent" ng-value="range" ng-repeat="range in $ctrl.dates">{{range}}</md-option>
+  </md-select>
+</md-input-container>-->

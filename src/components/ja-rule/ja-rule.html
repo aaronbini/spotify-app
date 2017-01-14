@@ -1,0 +1,30 @@
+<h3>Click here to view Ja Rule's Canon</h3>
+<md-button ng-click="$ctrl.toggleJa()">Ja Rule</md-button>
+
+
+  <section layout="row" flex>
+
+    <md-sidenav class="md-sidenav-left" 
+                md-component-id="ja"
+                md-whiteframe="4">
+
+      <md-toolbar class="md-theme-indigo">
+        <h1 class="md-toolbar-tools">Ja Rule</h1>
+      </md-toolbar>
+
+      <md-content layout-margin>
+       
+        <md-button ng-click="$ctrl.toggleJa()" class="md-accent">
+          Close this Sidenav
+        </md-button>
+        <h3>Click on The Album Image to Hear a Sampling from the Album</h3>
+        <div ng-if="$ctrl.jaRule" ng-repeat="album in $ctrl.albums">
+         <a ng-click="$ctrl.playTrack(album.preview)"><img ng-src="{{album.images[1].url}}" alt=""></a>
+        </div>
+
+      </md-content>
+
+    </md-sidenav>
+
+  </section>
+
