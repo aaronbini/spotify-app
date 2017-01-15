@@ -19,7 +19,10 @@ function controller ($mdSidenav) {
       .then(tracks => {
         //attach the preview uri to each of this.albums
         this.albums = this.albums.map((album, index) => {
-          album.preview = tracks[index].items[1].preview_url;
+          //check for existence of track
+          if (tracks[index].items[1]) {
+            album.preview = tracks[index].items[1].preview_url;
+          }
           return album;
         });
       });
