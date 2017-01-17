@@ -11,8 +11,7 @@ const app = angular.module('spotifyApp', [
   md
 ]);
 
-// app.constant('apiUrl', process.env.API_URL || '/api');
-app.constant('apiUrl', 'http://localhost:3000/api');
+app.constant('apiUrl', process.env.API_URL || '/api');
 
 app.config(['$mdThemingProvider', function($mdThemingProvider){
   $mdThemingProvider.theme('default')
