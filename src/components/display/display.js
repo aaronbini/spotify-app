@@ -7,10 +7,19 @@ export default {
 
 controller.$inject = ['spotifyService'];
 function controller (spotify) {
+
+  //helper function to clean up titles
+  function titleClean (string) {
+    if (string.indexOf('-') > -1) {
+      return string.split(' -')[0];
+    }
+    if (string.indexOf('(') > -1) {
+      return string.split(' (')[0];
+    }
+    return string;
+  }
   
   this.$onInit = () => {
-    // this.errorMessage = null;
-    // this.featured = null;
     spotify.getJa()
       .then(res => {
         this.jaRule = res;
@@ -18,28 +27,56 @@ function controller (spotify) {
       .catch(err => console.log(err));
   };
 
+  this.attachTracks = (tracks) => {
+     //attach the preview uri to each of this.albums
+    this.albums = this.albums.map((album, index) => {
+      //check for existence of track because not always there
+      if (tracks[index].items[1]) {
+        album.preview = tracks[index].items[1].preview_url;
+      }
+      return album;
+    });
+  };
+
   //set featured artist, attach unique albums, and attach playable track to album
-  this.setFeatured = (featured) => {
+  this.setFeatured = (featured, type) => {
     this.errorMessage = null;
     this.featured = featured;
-    let id = featured.artists.items[0].id;
-    spotify.getArtistAlbums(id)
-      .then(albums => {
-        this.albums = albums.items;
-        return this.getTracks(this.albums);
-      })
-      .then(tracks => {
-         //attach the preview uri to each of this.albums
-        this.albums = this.albums.map((album, index) => {
-          
-          //check for existence of track because not always there
-          if (tracks[index].items[1]) {
-            album.preview = tracks[index].items[1].preview_url;
-          }
-          return album;
-        });
-      })
-      .catch(err => console.log(err));
+    this.artistName = this.featured.artists.items[0].name;
+    //set variable to hold Promises
+    let resolve;
+
+    if (type === 'artist') { 
+      // this.artist = true;
+      let id = featured.artists.items[0].id;
+      resolve = Promise.all([
+        spotify.getArtistAlbums(id),
+        spotify.getTopTracks(id)
+      ]); 
+    } else { 
+      // this.artist = false;
+      this.albums = featured.albums.items;
+      resolve = Promise.resolve([this.albums, null]); 
+    }
+
+    resolve.then(([albums, tracks]) => {
+      if (tracks) { 
+        this.topTracks = tracks;
+        this.topTracks.tracks = this.topTracks.tracks.map(track => {
+          track.name = titleClean(track.name);
+          return track;
+        }).map(track => {
+          track.album.name = titleClean(track.album.name);
+          return track;
+        }); 
+      };
+      if (type === 'artist') { this.albums = albums.items; }
+      return this.getTracks(this.albums);
+    })
+    .then(tracks => {
+      this.attachTracks(tracks);
+    })
+    .catch(err => console.log(err));
   };
 
   //handle playing, pausing, and starting new track
@@ -58,7 +95,6 @@ function controller (spotify) {
     }
 
     //selected track is new if here
-    //
     if (this.audio) {
       this.audio.pause();
     }

@@ -9,9 +9,17 @@
   </ja-rule>
   <search class="flexy-item" set-featured="$ctrl.setFeatured"></search>
 </div>
+<!--<md-button class="custom-button" ng-if="$ctrl.artist" ng-click="$ctrl.toggleTopTracks()">
+  View {{$ctrl.artistName}}'s Top Tracks
+</md-button>-->
+<top-tracks ng-if="$ctrl.topTracks"
+            top-tracks="$ctrl.topTracks" 
+            play-track="$ctrl.playTrack" 
+            artist-name="$ctrl.artistName">
+</top-tracks>
 <div ng-if="$ctrl.featured">
    <h3 class="center">Click on The Album Image to Hear a Sampling from the Album</h3>
-   <h2 class="center" style="margin-top: 20px; margin-bottom: 20px;">{{$ctrl.featured.artists.items[0].name}}</h2>
+   <h2 class="center" style="margin-top: 20px; margin-bottom: 20px;" ng-if="$ctrl.artist">{{$ctrl.featured.artists.items[0].name}}</h2>
     <div class="flexy-wrap">
       <div ng-if="$ctrl.albums" ng-repeat="album in $ctrl.albums">
         <a ng-click="$ctrl.playTrack(album.preview)"><img ng-src="{{album.images[1].url}}" alt=""></a>

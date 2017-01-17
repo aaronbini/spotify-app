@@ -1,0 +1,43 @@
+<section layout="row" flex>
+
+  <md-button class="custom-button" ng-click="$ctrl.toggleTopTracks()">
+    View Top Tracks by {{$ctrl.artistName}}
+  </md-button>
+
+  <md-sidenav class="md-sidenav-right" 
+              md-component-id="top"
+              md-whiteframe="4">
+
+    <md-toolbar class="md-theme-indigo">
+      <h1 class="md-toolbar-tools">Top Tracks by {{$ctrl.artistName}}</h1>
+    </md-toolbar>
+
+    <md-content layout-margin>
+      
+      <md-button ng-click="$ctrl.toggleTopTracks()" class="md-accent">
+        Close Top Tracks SideNav
+      </md-button>
+      <h3>Click the Album Art to Hear a Sample From the Track</h3>
+      <div ng-if="$ctrl.topTracks">
+        <md-content>
+          <md-list flex>
+            <md-list-item class="md-3-line disable-md-clickable" 
+                          ng-repeat="track in $ctrl.topTracks.tracks"
+                          ng-click="$ctrl.playTrack(track.preview_url)">
+              <img ng-src="{{track.album.images[2].url}}" class="md-avatar" alt="">
+              <div class="md-list-item-text" layout="column">
+                <h3>{{track.name}}</h3>
+                <h4>On: {{track.album.name}}</h4>
+                <p>Current Popularity: {{track.popularity}}</p>
+              </div>
+            <md-divider ></md-divider>
+            </md-list-item>
+          </md-list>
+        </md-content>
+      </div>
+
+    </md-content>
+
+  </md-sidenav>
+
+</section>
