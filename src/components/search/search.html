@@ -1,4 +1,10 @@
 <md-input-container>
-  <input ng-model="$ctrl.searchTerm" type="text" placeholder="Search for an Artist or Album" required>
-  <md-button ng-click="$ctrl.query($ctrl.searchTerm)" style="background-color: rgba(76,175,80,0.2);">Search</md-button>
+    <input ng-model="$ctrl.searchArtist" type="text" placeholder="Search for an Artist or Album">
+    <md-button ng-click="$ctrl.query($ctrl.searchArtist, $ctrl.type)" class="custom-button">Search</md-button>
 </md-input-container>
+
+<md-radio-group ng-model="$ctrl.type">
+  <md-radio-button ng-repeat="option in $ctrl.searchOptions" ng-value="option.type" aria-label="{{option.show}}">
+    {{option.show}}
+  </md-radio-button>
+</md-radio-group>

@@ -20,8 +20,16 @@ img {
   }
 }
 
-.md-button {
-  background-color: rgba(76,175,80,0.2);
+input {
+  margin-bottom: 10px;
+}
+
+.custom-button {
+  margin: 0 auto !important;
+  display: block !important; 
+  background-color: rgba(76,175,80,0.2) !important;
+  margin-top: 20px !important;
+  margin-bottom: 20px !important;
 }
 
 .font-rubik {
@@ -35,6 +43,18 @@ img {
 
   .flex-item {
     width: 40%;
+  }
+}
+
+.flex-input {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  
+  .flex-item {
+    width: 95%;
+    margin-top: 20px;
+    margin-bottom: 20px;
   }
 }
 
