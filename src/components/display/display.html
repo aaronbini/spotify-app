@@ -9,13 +9,12 @@
   </ja-rule>
   <search class="flexy-item" set-featured="$ctrl.setFeatured"></search>
 </div>
-<!--<md-button class="custom-button" ng-if="$ctrl.artist" ng-click="$ctrl.toggleTopTracks()">
-  View {{$ctrl.artistName}}'s Top Tracks
-</md-button>-->
+
 <top-tracks ng-if="$ctrl.topTracks"
             top-tracks="$ctrl.topTracks" 
             play-track="$ctrl.playTrack" 
-            artist-name="$ctrl.artistName">
+            artist-name="$ctrl.artistName"
+            artist="$ctrl.artist">
 </top-tracks>
 <div ng-if="$ctrl.featured">
    <h3 class="center">Click on The Album Image to Hear a Sampling from the Album</h3>
