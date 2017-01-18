@@ -5,7 +5,8 @@ export default {
   bindings: {
     playTrack: '<',
     topTracks: '<',
-    artistName: '<'
+    artistName: '<',
+    artist: '<'
   },
   controller
 };

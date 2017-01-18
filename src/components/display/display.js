@@ -45,14 +45,16 @@ function controller (spotify) {
     //set variable to hold Promises
     let resolve;
 
-    if (type === 'artist') { 
+    if (type === 'artist') {
+      this.artist = true; 
       this.artistName = this.featured.artists.items[0].name;
       let id = featured.artists.items[0].id;
       resolve = Promise.all([
         spotify.getArtistAlbums(id),
         spotify.getTopTracks(id)
       ]); 
-    } else { 
+    } else {
+      this.artist = false; 
       this.albums = featured.albums.items;
       resolve = Promise.resolve([this.albums, null]); 
     }
